@@ -15,7 +15,9 @@ import ast
 import pickle
 from PIL import Image, ImageTk
 
+#This function defines the main part of the program
 def main2():
+    # These are the lists and buttons used in the program
     watchedlist = []
     to_watchlist = []
     watched_movie_b = []
@@ -23,22 +25,26 @@ def main2():
     to_watch_movie_b = []
     add_to_watchedlist_b = []
     remove_to_watch_movie_b = []
-
+    # If there is a 'watchlist' file and it is not empty, read and load the contents
     if os.path.isfile('watchlist') and os.path.getsize('watchlist')>0:
         with open('watchlist','rb') as r:
             to_watchlist = pickle.load(r)
+        # Remove any '-' characters from the list
         while '-' in to_watchlist:
             for i in to_watchlist:
                 if i == '-':
                     to_watchlist.remove(i)
-        
+
+    # If there is a 'watched' file and it is not empty, read and load the contents
     if os.path.isfile('watched') and os.path.getsize('watched'):
         with open('watched','rb') as r:
             watchedlist = pickle.load(r)
+        # Remove any '-' characters from the list
         while '-' in watchedlist:
             for i in watchedlist:
                 if i == '-':
                     watchedlist.remove(i)
+
 
     class Master(tk.Tk):
         def __init__(self, *args, **kwargs):
