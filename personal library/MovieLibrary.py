@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
+from config import OMDB_API_KEY
 import os
 import requests
 import ast
@@ -317,7 +318,7 @@ class ShowInfo(ttk.LabelFrame):
         title = name
         try:
             # Send request to the API and retrieve the data as a string
-            res = requests.get('http://www.omdbapi.com/?t=' + title + '&apikey=6a32ca26')
+            res = requests.get('http://www.omdbapi.com/?t=' + title + '&apikey={OMDB_API_KEY}')
             d = res.text
             details = ast.literal_eval(d)
             t = details['Title']
